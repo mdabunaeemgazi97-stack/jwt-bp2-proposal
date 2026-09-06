@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GREEN IP - BP2 Proposal Workflow</title>
+<style>
+:root{--bg:#06130f;--panel:#0b2119;--line:#1e5b47;--text:#f3faf6;--muted:#a7c7ba;--accent:#6ee7b7;--warn:#f59e0b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 Arial,sans-serif}
+.wrap{max-width:1120px;margin:auto;padding:24px}.nav{display:flex;justify-content:space-between;gap:20px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.brand{font-weight:800;letter-spacing:.09em}.nav a{color:var(--muted);text-decoration:none;margin-left:16px}
+.hero{padding:65px 0 35px}.eyebrow{color:var(--accent);font-weight:800;letter-spacing:.13em;font-size:13px}
+h1{font-size:clamp(42px,7vw,78px);line-height:.98;margin:14px 0 20px;max-width:900px}h2{font-size:28px;margin:0 0 10px}
+p{color:var(--muted)}.lead{font-size:18px;max-width:850px}
+.btn{border:1px solid var(--line);background:transparent;color:var(--text);padding:11px 17px;border-radius:9px;font-weight:800;cursor:pointer}
+.btn.primary{background:var(--accent);color:#052016;border-color:var(--accent)}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px 0}
+.tab{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:16px;cursor:pointer}.tab.active{border-color:var(--accent)}
+.num{color:var(--accent);font-weight:900;font-size:12px}.tab strong{display:block;margin-top:6px;font-size:17px}
+.panel{display:none;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px;margin-top:16px}.panel.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.field label{display:block;font-weight:800;margin:5px 0 7px}
+input,select,textarea{width:100%;background:#061a13;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:12px;font:inherit}textarea{min-height:120px}
+.choices{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.choice{background:#081c15;border:1px solid var(--line);border-radius:12px;padding:16px;color:var(--text);cursor:pointer;text-align:left}
+.choice.selected{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}.choice b{display:block;color:var(--accent);margin-bottom:4px}
+.routes{grid-template-columns:repeat(4,1fr)}.result{white-space:pre-wrap;background:#061a13;border:1px solid var(--line);border-radius:10px;padding:17px}
+.notice{border-left:3px solid var(--accent);background:#09261c;padding:12px 14px;margin-top:15px}.warn{border-left:3px solid var(--warn);background:#211c09;padding:12px 14px;margin-top:15px}
+.small{font-size:13px;color:var(--muted)}footer{padding:40px 0 20px;color:var(--muted);font-size:13px}
+@media(max-width:800px){.steps,.choices,.routes{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}}
+@media(max-width:520px){.steps,.choices,.routes{grid-template-columns:1fr}.wrap{padding:16px}h1{font-size:44px}}
+@media print{body{background:#fff;color:#111}.nav,.hero,.steps,.actions,footer{display:none!important}.panel{display:none!important;background:#fff;border:0}.panel.active{display:block}.result{background:#fff;color:#111}.result,.notice{border-color:#777}p,.small{color:#333}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="nav"><div class="brand">JWT · GREEN INDUSTRIAL IP</div><div><a href="#workflow">Workflow</a><a href="#proposal">Proposal</a><a href="#evidence">PCRR</a></div></nav>
+
+<header class="hero">
+<div class="eyebrow">JWT · BP2</div>
+<h1>M&amp;A — Business Agent — eCommerce</h1>
+<p class="lead">A generic-user proposal workflow for selecting a Dream.ZONE, evaluating territory factors, screening the 11 NFW product set, selecting a commercial route and preparing evidence for PCRR / Client review.</p>
+<div class="actions"><button class="btn primary" onclick="go(1)">Start Proposal</button><a class="btn" href="#workflow">Choose Dream.ZONE</a></div>
+</header>
+
+<section id="workflow">
+<div class="steps">
+<div class="tab active" id="tab1" onclick="go(1)"><span class="num">01</span><strong>Access</strong><span class="small">Generic user contact</span></div>
+<div class="tab" id="tab2" onclick="go(2)"><span class="num">02</span><strong>Qualification</strong><span class="small">Role and purpose</span></div>
+<div class="tab" id="tab3" onclick="go(3)"><span class="num">03</span><strong>Dream.ZONE</strong><span class="small">Territory factors</span></div>
+<div class="tab" id="tab4" onclick="go(4)"><span class="num">04</span><strong>11 NFW</strong><span class="small">Product screening</span></div>
+<div class="tab" id="tab5" onclick="go(5)"><span class="num">05</span><strong>Route</strong><span class="small">Commercial route</span></div>
+<div class="tab" id="tab6" onclick="go(6)"><span class="num">06</span><strong>Proposal</strong><span class="small">Generate draft</span></div>
+<div class="tab" id="tab7" onclick="go(7)"><span class="num">07</span><strong>Evidence</strong><span class="small">PDF / PCRR</span></div>
+</div>
+
+<div class="panel active" id="p1">
+<div class="eyebrow">STEP 01 · ACCESS</div><h2>Generic User Access</h2>
+<p>Enter the email associated with this proposal.</p>
+<div class="field"><label>Email *</label><input id="email" type="email" placeholder="name@example.com"></div>
+<div class="actions"><button class="btn primary" onclick="accessNext()">Continue</button></div><div id="m1"></div>
+</div>
+
+<div class="panel" id="p2">
+<div class="eyebrow">STEP 02 · QUALIFICATION</div><h2>Project Qualification</h2>
+<div class="grid">
+<div class="field"><label>Role *</label><select id="role"><option>General User</option><option>Business Agent</option><option>Partner</option><option>Investor</option></select></div>
+<div class="field"><label>Display name</label><input id="name" placeholder="Name or organisation"></div>
+</div>
+<div class="field"><label>Project / business purpose *</label><textarea id="purpose" placeholder="Describe the intended Dream.ZONE opportunity."></textarea></div>
+<div class="actions"><button class="btn" onclick="go(1)">Back</button><button class="btn primary" onclick="qualNext()">Continue</button></div>
+</div>
+
+<div class="panel" id="p3">
+<div class="eyebrow">STEP 03 · DREAM.ZONE</div><h2>Select a Dream.ZONE</h2>
+<div class="grid">
+<div class="field"><label>Country *</label><select id="country" onchange="isoSync()"><option value="BD">Bangladesh</option><option value="IN">India</option><option value="IT">Italy</option><option value="OTHER">Other</option></select></div>
+<div class="field"><label>ISO *</label><input id="iso" value="BD" maxlength="3"></div>
+<div class="field"><label>City *</label><input id="city" value="Khulna"></div>
+<div class="field"><label>Population scenario *</label><input id="pop" value="1,000,000"></div>
+<div class="field"><label>Economic factor *</label><input id="factor" placeholder="Applicable model/source factor"></div>
+<div class="field"><label>Territory notes</label><input id="znotes" placeholder="Optional research notes"></div>
+</div>
+<p class="small">Use a genuine applicable source/model factor. Do not label an unverified value as an official matrix value.</p>
+<div class="actions"><button class="btn" onclick="go(2)">Back</button><button class="btn primary" onclick="zoneNext()">Continue</button></div>
+</div>
+
+<div class="panel" id="p4">
+<div class="eyebrow">STEP 04 · 11 NFW</div><h2>Select product family</h2>
+<p>Choose the product family to evaluate.</p>
+<div class="choices" id="products"></div>
+<div class="actions"><button class="btn" onclick="go(3)">Back</button><button class="btn primary" onclick="go(5)">Continue</button></div>
+</div>
+
+<div class="panel" id="p5">
+<div class="eyebrow">STEP 05 · COMMERCIAL ROUTE</div><h2>Select a route</h2>
+<div class="choices routes">
+<button class="choice" id="rL" onclick="routePick('L')"><b>LICENCE</b>Licence route (L)</button>
+<button class="choice" id="rS" onclick="routePick('S')"><b>SALE RP</b>Sale route (S)</button>
+<button class="choice" id="rI" onclick="routePick('I')"><b>II-SRB</b>II-SRB route (I)</button>
+<button class="choice" id="rJ" onclick="routePick('J')"><b>JV-30/21</b>JV route (J)</button>
+</div>
+<div class="actions"><button class="btn" onclick="go(4)">Back</button><button class="btn primary" onclick="routeNext()">Generate proposal</button></div>
+</div>
+
+<div class="panel" id="p6">
+<div class="eyebrow">STEP 06 · PROPOSAL</div><h2 id="proposal">Proposal draft</h2>
+<div class="result" id="proposalText"></div>
+<div class="notice"><b>Status: DRAFT — AWAITING PCRR / CLIENT REVIEW</b><br>This does not represent PCRR/client approval, payment, signature or rights transfer.</div>
+<div class="actions"><button class="btn" onclick="go(5)">Back</button><button class="btn primary" onclick="window.print()">Print / Save PDF</button><button class="btn" onclick="go(7)">Add evidence</button></div>
+</div>
+
+<div class="panel" id="p7">
+<div class="eyebrow">STEP 07 · PCRR / CLIENT EVIDENCE</div><h2 id="evidence">Evidence record</h2>
+<p>Only enter genuine external evidence.</p>
+<div class="grid">
+<div class="field"><label>Proposal / PDF title *</label><input id="pdfTitle"></div>
+<div class="field"><label>PDF evidence URL *</label><input id="pdfUrl" placeholder="https://example.com/proposal.pdf"></div>
+<div class="field"><label>PCRR / Client reference *</label><input id="pcrr" placeholder="Genuine reference only"></div>
+<div class="field"><label>Validation date *</label><input id="date" type="date"></div>
+</div>
+<div class="field"><label>Notes</label><textarea id="notes" placeholder="Research-based proposal prepared for PCRR / Client review."></textarea></div>
+<div class="actions"><button class="btn" onclick="go(6)">Back</button><button class="btn primary" onclick="saveEvidence()">Save evidence record</button></div>
+<div id="m7"></div>
+</div>
+</section>
+
+<footer>JWT · GREEN INDUSTRIAL IP · BP2<br>Research workflow demonstration. Genuine external validation evidence is required before any approval/validation claim.</footer>
+</div>
+
+<script>
+let product='S3', route='';
+const products=['S1','S2','S3','S4','S5','S6','S7','S8','S9','S10','S11'];
+const routeNames={L:'Licence (L)',S:'Sale RP (S)',I:'II-SRB (I)',J:'JV-30/21 (J)'};
+function $(x){return document.getElementById(x)}
+function renderProducts(){
+ $('products').innerHTML=products.map(p=>'<button class="choice '+(p===product?'selected':'')+'" onclick="pickProduct(\''+p+'\')"><b>'+p+'</b>'+(p==='S3'?'Master Plan':'NFW product family')+'</button>').join('');
+}
+function pickProduct(p){product=p;renderProducts()}
+function routePick(r){route=r;['L','S','I','J'].forEach(x=>$('r'+x).classList.toggle('selected',x===r))}
+function isoSync(){const c=$('country').value;if(c!=='OTHER')$('iso').value=c}
+function go(n){
+ for(let i=1;i<=7;i++){$('p'+i).classList.toggle('active',i===n);$('tab'+i).classList.toggle('active',i===n)}
+ if(n===6)buildProposal(); if(n===7)$('pdfTitle').value=buildTitle();
+ location.hash='workflow'; window.scrollTo({top:0,behavior:'smooth'});
+}
+function accessNext(){
+ if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($('email').value.trim())){$('m1').innerHTML='<div class="warn">Please enter a valid email address.</div>';return}
+ $('m1').innerHTML='<div class="notice">Email accepted for this browser session. Production OTP delivery requires a connected server-side service.</div>';go(2)
+}
+function qualNext(){if(!$('purpose').value.trim()){alert('Please enter the project / business purpose.');return}go(3)}
+function zoneNext(){for(const id of ['iso','city','pop','factor'])if(!$(''+id).value.trim()){alert('Please complete Country, ISO, City, Population and Economic factor.');return}go(4)}
+function routeNext(){if(!route){alert('Please select a commercial route.');return}go(6)}
+function buildTitle(){return 'JWT Commercial Opportunity Proposal — '+$('iso').value.trim().toUpperCase()+' / '+$('city').value.trim()+' / '+product+' / '+(route||'DRAFT')}
+function buildProposal(){
+ $('proposalText').textContent=buildTitle()+'\n\nResearch-based proposal for PCRR / Client review\n\n1. ACCESS\nEmail: '+$('email').value.trim()+'\nRole: '+$('role').value+'\nDisplay name: '+($('name').value.trim()||'Not supplied')+'\n\n2. DREAM.ZONE\nCountry: '+$('country').value+'\nISO: '+$('iso').value.trim().toUpperCase()+'\nCity: '+$('city').value.trim()+'\nPopulation scenario: '+$('pop').value.trim()+'\nEconomic factor: '+$('factor').value.trim()+'\n\n3. 11 NFW\nSelected product family: '+product+'\n\n4. COMMERCIAL ROUTE\n'+routeNames[route]+'\n\n5. PROJECT PURPOSE\n'+$('purpose').value.trim()+'\n\n6. REVIEW STATUS\nDRAFT — AWAITING PCRR / CLIENT VALIDATION\n\nThis proposal is a structured research-based draft. Any PCRR/client validation, approval, payment, signature, rights transfer or other acceptance requires genuine external evidence.';
+ $('pdfTitle').value=buildTitle()
+}
+function saveEvidence(){
+ if(['pdfTitle','pdfUrl','pcrr','date'].some(id=>!$(id).value.trim())){$('m7').innerHTML='<div class="warn">Please complete all required fields using genuine evidence.</div>';return}
+ const rec={title:$('pdfTitle').value,url:$('pdfUrl').value,ref:$('pcrr').value,date:$('date').value,notes:$('notes').value,savedAt:new Date().toISOString()};
+ localStorage.setItem('jwt_bp2_evidence',JSON.stringify(rec));
+ $('m7').innerHTML='<div class="notice"><b>Evidence record saved in this browser.</b><br>It has not been submitted to or validated by PCRR/client.</div>'
+}
+renderProducts();
+</script>
+</body>
+</html>
